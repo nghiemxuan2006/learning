@@ -1,0 +1,21 @@
+services:
+  backend:
+    container_name: week1_be
+    build: 
+      context: /BE
+    env_file:
+      - BE/.env
+    ports:
+      - '8000:8000'
+    volumes:
+      - data:/var/data
+  frontend:
+    container_name: week1_fe_tmp
+    build: 
+      context: /fe
+    env_file:
+      - fe/.env
+    ports:
+      - '3000:3000'
+volumes:
+  data:

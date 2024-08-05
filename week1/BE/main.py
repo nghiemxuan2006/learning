@@ -19,6 +19,10 @@ app.add_middleware(
 async def getRoot():
     return {"message": "File saved successfully"}
 
+@app.get('/health_check')
+async def getRoot():
+    return {"message": "health check successfully"}
+
 
 @app.post("/upload/")
 async def uploadfile(file: UploadFile):
@@ -28,4 +32,4 @@ async def uploadfile(file: UploadFile):
             f.write(file.file.read())
         return {"message": "File saved successfully"}
     except Exception as e:
-        return {"message": e.args}
+        return {"message": e.args} 
