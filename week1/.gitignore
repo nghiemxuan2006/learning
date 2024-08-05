@@ -20,3 +20,4 @@ fe/yarn-debug.log*
 fe/yarn-error.log*
 
 be/venv
+be/__pycache__
