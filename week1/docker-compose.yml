@@ -9,6 +9,7 @@ services:
       - '8000:8000'
     volumes:
       - data:/var/data
+    hostname: backend
   frontend:
     container_name: week1_fe_tmp
     build: 
@@ -17,5 +18,10 @@ services:
       - fe/.env
     ports:
       - '3000:3000'
+  nginx:
+    build:
+      context: /nginx
+    ports:
+      - '80:80'
 volumes:
   data:

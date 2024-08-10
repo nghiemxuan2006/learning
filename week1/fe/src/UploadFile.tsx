@@ -13,7 +13,7 @@ const FileUpload = () => {
     const formData = new FormData();
     formData.append('file', selectedFile);
 
-    axios.post('http://localhost:8000/upload/', formData)
+    axios.post('http://localhost:80/upload/', formData)
       .then(response => {
         setMessage('File uploaded successfully');
       })
