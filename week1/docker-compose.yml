@@ -1,4 +1,20 @@
 services:
+  db:
+    image: mysql:5.7
+    env_file:
+      - BE/.env
+    environment:
+      - MYSQL_ROOT_PASSWORD=$DB_PASSWORD
+    ports:
+      - 3306:3306
+    networks:
+      - backend-network
+    healthcheck:
+      test: ['CMD-SHELL', 'mysqladmin ping -h 127.0.0.1 -u root --password=$MYSQL_ROOT_PASSWORD']
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
   backend:
     container_name: week1_be
     build: 
@@ -10,6 +26,11 @@ services:
     volumes:
       - data:/var/data
     hostname: backend
+    networks: 
+      - backend-network
+    depends_on:
+      db:
+        condition: service_healthy
   frontend:
     container_name: week1_fe_tmp
     build: 
@@ -25,3 +46,5 @@ services:
       - '80:80'
 volumes:
   data:
+networks:
+  backend-network:
