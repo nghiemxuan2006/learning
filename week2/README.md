@@ -1,0 +1,1 @@
+Follow the step by step instructions via this link: https://docs.aws.amazon.com/lambda/latest/dg/python-image.html
